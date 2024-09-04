@@ -1,2 +1,9 @@
 *river-engine*
-*.terraform*
+*.terraform.lock.hcl
+**/.terraform/*
+.terraform.tfstate.lock.*
+*.tfvars
+*.tfvars.json
+*.tfstate
+*.tfstate.*
+/.terraform/*
