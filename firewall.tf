@@ -1,17 +1,18 @@
 resource "google_compute_firewall" "nginx" {
-  name = "allow 22 and 80"
-  network = google_compute_network.VPC1
+  name    = "allow"
+  network = google_compute_network.vpc1.self_link
 
   allow {
     protocol = "icmp"
   }
   allow {
     protocol = "tcp"
-    ports = ["80","8080"]
+    ports    = ["80", "8080"]
   }
   allow {
-    protocol = "ssh"
-    ports = ["22"]
+    protocol = "tcp"
+    ports    = ["22"]
   }
+  source_tags = ["nginx"]
   target_tags = ["nginx"]
 }

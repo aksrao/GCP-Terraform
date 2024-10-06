@@ -1,6 +1,6 @@
 resource "google_compute_instance" "nginx" {
-  name = "nginx-server"
-  zone = "asia-south1-a" 
+  name         = "nginx-server"
+  zone         = "asia-south1-a"
   machine_type = "e2-small"
 
   tags = ["nginx"]
@@ -15,7 +15,13 @@ resource "google_compute_instance" "nginx" {
       EOT
   }
   network_interface {
-    network = google_compute_network.VPC1
+    network = google_compute_network.vpc1.self_link
+    subnetwork = google_compute_subnetwork.subnet-01.self_link
+    access_config {
+    }
   }
 
+}
+output "external-ip" {
+  value = google_compute_instance.nginx.network_interface[0].access_config[0].nat_ip
 }
