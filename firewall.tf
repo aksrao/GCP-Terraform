@@ -13,6 +13,5 @@ resource "google_compute_firewall" "nginx" {
     protocol = "tcp"
     ports    = ["22"]
   }
-  source_tags = ["nginx"]
-  target_tags = ["nginx"]
+  source_ranges = ["0.0.0.0/0"]
 }
